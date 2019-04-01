@@ -6,15 +6,18 @@ public class MainApp {
     public static void main(String[] args) {
 
         String dataType = "Student";
-
-        MySQLHandler mySQLHandler = new MySQLHandler();
-        persistData(mySQLHandler);
-
-        PostgresHandler postgresHandler = new PostgresHandler();
-        persistData(postgresHandler);
-
-        OracleHandler oracleHandler = new OracleHandler();
-        persistData(oracleHandler);
+        switch (dataType) {
+            case "Student":
+                MySQLHandler mySQLHandler = new MySQLHandler();
+                persistData(mySQLHandler);
+                break;
+            case "Course":
+                PostgresHandler postgresHandler = new PostgresHandler();
+                persistData(postgresHandler);
+            case "Teacher":
+                OracleHandler oracleHandler = new OracleHandler();
+                persistData(oracleHandler);
+        }
     }
 
 
@@ -30,9 +33,5 @@ public class MainApp {
     public static void persistData(OracleHandler oracleHandler) {
         oracleHandler.create();
     }
-
-//    public void persistData(DBHandler someHandler) {
-//        someHandler.create();
-//    }
 
 }
