@@ -5,35 +5,26 @@ public class MainApp {
 
     public static void main(String[] args) {
 
-        String dataType = "Course";
+        String dataType = "Teacher";
+        DBHandler handler = null;
         switch (dataType) {
             case "Student":
-                MySQLHandler mySQLHandler = new MySQLHandler();
-                persistData(mySQLHandler);
+                handler = new MySQLHandler();
                 break;
             case "Course":
-                PostgresHandler postgresHandler = new PostgresHandler();
-                persistData(postgresHandler);
+                handler = new PostgresHandler();
                 break;
             case "Teacher":
-                OracleHandler oracleHandler = new OracleHandler();
-                persistData(oracleHandler);
+                handler = new OracleHandler();
                 break;
         }
+
+        persistData(handler);
     }
 
 
-
-    public static void persistData(MySQLHandler mySQLHandler) {
-        mySQLHandler.create();
-    }
-
-    public static void persistData(PostgresHandler postgresHandler) {
-        postgresHandler.create();
-    }
-
-    public static void persistData(OracleHandler oracleHandler) {
-        oracleHandler.create();
+    public static void persistData(DBHandler handle) {
+        handle.create();
     }
 
 
